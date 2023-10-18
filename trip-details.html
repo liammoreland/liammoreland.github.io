@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transport Canberra Radio</title>
+
+    <!--Bootstraph CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- custom CSS-->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Google font inter-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+   <!--ACTGOV LOGO SECTION-->
+  <div class="logo-section">
+    <div class="container">
+      <img src="imgs/logo-section-img.png" alt="ACT Government Logo" class="img-fluid">
+    </div>
+  </div>
+
+  <!--NAVBAR-->
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact me</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+    <!-- PROGRESS BAR-->
+    <section class="progress-section">
+        <div class="container">
+            <ul class="list-unstyled d-flex">
+                <li class="mr-2">
+                    <button class="btn btn-primary" id="trip-details-button">1. Trip details</button>
+                </li>
+                <li class="mr-2">
+                    <button class="btn btn-primary" id="link-spotify-button">2. Link Spotify</button>
+                </li>
+                <li>
+                    <button class="btn btn-primary" id="top-genres-button">3. Top genres</button>
+                </li>
+            </ul>
+
+        </div>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                aria-valuemax="100"></div>
+        </div>
+    </section>
+
+
+
+    <!-- CONTENT SECTION -->
+    <div class="content-section" id="trip-details-content">
+        <section class="trip-details-section">
+            <div class="container">
+                <div class="row">
+                    <h1>Where are you going?</h1>
+                    <p>Choose which light rail stop you'll be getting on and off at</p>
+                </div>
+            </div>
+            <div class="container dropdown-container">
+                <div class="row">
+                    <!-- Circle Column -->
+                    <div class="col-auto">
+                        <div class="d-flex">
+                            <div class="circle-column">
+                                <div class="open-circle"></div>
+                                <div class="grey-circle"></div>
+                                <div class="grey-circle"></div>
+                                <div class="grey-circle"></div>
+                                <div class="grey-circle"></div>
+                                <div class="closed-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dropdowns Column -->
+                    <div class="col d-flex flex-column justify-content-between dropdown-column">
+                        <div class="col-12">
+                            <label for="startingLocation" class="form-label">Start location:</label>
+                            <select class="form-select" id="startingLocation">
+                                <option value="location1">Choose start location</option>
+                                <option class="location-colour" value="location2">Alinga street</option>
+                                <option class="location-colour" value="location3">Elouera street</option>
+                                <option class="location-colour" value="location4">Ipima street</option>
+                                <option class="location-colour" value="location5">Macarthur avenue</option>
+                                <option class="location-colour" value="location6">Dickson interchange</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="endingLocation" class="form-label">Choose destination:</label>
+                            <select class="form-select" id="endingLocation">
+                                <option value="locationA">Destination</option>
+                                <option value="locationB">Alinga street</option>
+                                <option value="locationC">Elouera street</option>
+                                <option value="locationD">Ipima street</option>
+                                <option value="locationE">Macarthur avenue</option>
+                                <option value="locationF">Dickson interchange</option>
+
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div id="distance-display">
+
+                </div>
+            </div>
+
+            <div class="container button-container">
+                <button id="continue-spotify" class="continue-button btn btn-primary">Continue</button>
+                <div id="cancel-button" class="back-button">
+                    <a href="index.html">
+                        Cancel and go back
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!--SPOTIFY SECTION-->
+    <div class="content-section d-none" id="link-spotify-content">
+        <section class="link-spotify-section">
+            <div class="container">
+                <h1>Connect your Spotify</h1>
+                <p>We’ll use this to create a personalized playlist (don’t worry, we don’t save any details)</p>
+
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="text-button">
+                      <a href="#" style="padding-right: 4px;">
+                          Connect here
+                      </a>
+                      <span class="spotify-logo">
+                        <img src="imgs/spotify-logo.png" alt="">
+                      </span>
+                    </div>
+                  </div>  
+            </div>
+
+                        
+              
+
+            <div class="container button-container">
+                <button id="continue-genre" class="continue-button btn btn-primary">Continue</button>
+                <div id="back-trip-details" class="back-button">
+                    <a href="#">
+                        Go back
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!--GENRE SECTION-->
+    <div class="content-section d-none" id="top-genre-content">
+        <section class="top-genre-section">
+            <div class="container">
+                <h1>What are you listening to?</h1>
+                <p>Pick your favourite genre and we'll only play the songs you want to hear</p>
+                <div class="genre-row1">
+                <div class="row genre-row">
+                    <div class="col-6 genre-btn-container">
+                        <button class="genre-button" data-image1="imgs/rap.png.png" data-image2="imgs/rap-red.png">
+                        <div class="genre-icon">
+                            <div class="genre-img">
+                                <img src="imgs/rap.png.png" alt="Rap Icon">
+                            </div>
+                            <div>
+                                <p class="genre-text">Hip Hop</p>
+                            </div>
+                        </div>
+                        </button>
+                    </div>
+                    <div class="col-6 d-flex genre-btn-container">
+                        <button class="genre-button" data-image1="imgs/country.png.png" data-image2="imgs/country-red.png">
+                        <div class="genre-icon">
+                            <div class="genre-img">
+                                <img src="imgs/country.png.png" alt="Country Icon">
+                            </div>
+                            <div>
+                                <p class="genre-text">Country</p>
+                            </div>
+                        </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row genre-row">
+                    <div class="col-6 d-flex genre-btn-container">
+                        <button class="genre-button" data-image1="imgs/pop.png.png" data-image2="imgs/pop-red.png">
+                        <div class="genre-icon">
+                            <div class="genre-img">
+                                <img src="imgs/pop.png.png" alt="Pop Icon">
+                            </div>
+                            <div>
+                                <p class="genre-text">Pop</p>
+                            </div>
+                        </div>
+                       </button>
+                    </div>
+                    <div class="col-6 d-flex genre-btn-container">
+                        <button class="genre-button" data-image1="imgs/rock.png.png" data-image2="imgs/rock-red.png">
+                        <div class="genre-icon">
+                            <div class="genre-img">
+                                <img src="imgs/rock.png.png" alt="Rock Icon">
+                            </div>
+                            <div>
+                                <p class="genre-text">Rock</p>
+                            </div>
+                        </div>
+                    </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="container button-container">
+                <button id="create-playlist" class="continue-button btn btn-primary">Create playlist</button>
+                <div id="back-spotify" class="back-button">
+                    <a href="#">
+                        Go back
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <button id="back-button" class="btn btn-secondary">Back</button>
+    <button id="next-button" class="btn btn-primary">Next</button> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
