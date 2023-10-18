@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        const hashParams = {};
+        const hash = window.location.hash.substring(1);
+        const params = hash.split('&');
+
+        params.forEach((param) => {
+            const parts = param.split('=');
+            hashParams[parts[0]] = decodeURIComponent(parts[1]);
+        });
+
+        // The access token can now be found in hashParams.access_token
+        console.log(hashParams.access_token);
+    </script>
+</body>
+</html>

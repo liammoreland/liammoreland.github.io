@@ -196,97 +196,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+const spotifyLoginButton = document.getElementById("connect-spotify");
 
+spotifyLoginButton.addEventListener("click", () => {
+    const clientId = "dd2bb48637cd48c08c830b0b05bd5d8a";
+    const redirectUri = "https://liammoreland.github.io/callback";
+    const scope = "user-library-read playlist-modify-public";
 
-// // creating the playlist //
-// async function createPlaylist(accessToken, userId, playlistName) {
-//     try {
-//         const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-//             method: 'POST',
-//             headers: {
-//                 'Authorization': `Bearer ${accessToken}`,
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 name: playlistName,
-//             }),
-//         });
+    const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=token&show_dialog=true`;
 
-//         if (response.status === 201) {
-//             const data = await response.json();
-//             return data.id; // Return the ID of the created playlist.
-//         } else {
-//             console.error('Failed to create a playlist:', response.statusText);
-//             return null;
-//         }
-//     } catch (error) {
-//         console.error('Error creating playlist:', error);
-//         return null;
-//     }
-// }
-
-
-// function filterTracksByGenre(tracks, selectedGenres) {
-//     return tracks.filter(track => selectedGenres.includes(track.genre));
-// }
-
-
-// async function addTracksToPlaylist(accessToken, playlistId, trackUris) {
-//     try {
-//         const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-//             method: 'POST',
-//             headers: {
-//                 'Authorization': `Bearer ${accessToken}`,
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({ uris: trackUris }),
-//         });
-
-//         if (response.status === 201) {
-//             return true; // Tracks added successfully.
-//         } else {
-//             console.error('Failed to add tracks to the playlist:', response.statusText);
-//             return false;
-//         }
-//     } catch (error) {
-//         console.error('Error adding tracks to the playlist:', error);
-//         return false;
-//     }
-// }
-
-// // Step 6: Set Playlist Details
-// async function setPlaylistDetails(accessToken, playlistId, playlistDetails) {
-//     try {
-//         const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-//             method: 'PUT',
-//             headers: {
-//                 'Authorization': `Bearer ${accessToken}`,
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(playlistDetails),
-//         });
-
-//         if (response.status === 200) {
-//             return true; // Playlist details updated successfully.
-//         } else {
-//             console.error('Failed to set playlist details:', response.statusText);
-//             return false;
-//         }
-//     } catch (error) {
-//         console.error('Error setting playlist details:', error);
-//         return false;
-//     }
-// }
-
-// // Step 7: Display the Playlist to the User (Assuming you have an HTML element to display the playlist)
-// function displayPlaylist(playlistUrl) {
-//     const playlistContainer = document.getElementById('playlist-container');
-//     playlistContainer.innerHTML = `<iframe src="${playlistUrl}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
-// }
-
-// // Step 8: Handle Errors
-// function handleError(message) {
-//     console.error(message);
-//     // You can display an error message to the user or handle it in your application as needed.
-// }
-
+    // Redirect the user to the Spotify login page
+    window.location.href = authorizeUrl;
+});
