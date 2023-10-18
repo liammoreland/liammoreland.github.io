@@ -86,6 +86,7 @@ body p {
 /* HERO */
 .hero-section {
     min-height: 320px;
+    background-color: #EC4343;
     background-image: url('imgs/hero-img-mobile-2.png');
     background-size: cover;
     background-position: center bottom;
