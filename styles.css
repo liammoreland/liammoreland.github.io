@@ -204,7 +204,7 @@ body p {
     border-bottom: 1.8px solid transparent;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
 
     .body-text-section .container {
         padding: 2.29rem 24px;
@@ -257,7 +257,7 @@ body p {
     max-width: 71px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
     .country-section .container {
         padding-top: 2.29rem;
         padding-bottom: 2.29rem;
@@ -290,7 +290,7 @@ body p {
     padding-bottom: 24px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
     .my-info-section .container {
         padding-top: 0.86rem;
         padding-bottom: 0.86rem;
@@ -334,7 +334,7 @@ footer img {
     height: 72px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
 
     footer .container {
         display: block;
@@ -396,7 +396,7 @@ progress li {
     background-color: #EC4343;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
     .progress-section .container {
         padding-top: 1rem;
         padding-bottom: 1rem;
@@ -541,7 +541,7 @@ select.form-select option {
 
 
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
     .trip-details-section {
         padding: 0;
     }
@@ -592,7 +592,7 @@ select.form-select option {
     line-height: 2.14286rem;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
     
 .link-spotify-section {
     padding: 0;
@@ -670,7 +670,7 @@ select.form-select option {
     min-width: 50%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
 
     
 .top-genre-section {
