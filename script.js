@@ -16,7 +16,6 @@ const createPlaylist = document.getElementById("create-playlist");
 const backSpotify = document.getElementById("back-spotify");
 
 
-
 // dropdown - variables //
 const startingLocationDropdown = document.getElementById("startingLocation");
 const endingLocationDropdown = document.getElementById("endingLocation");
@@ -24,6 +23,8 @@ const distanceDisplay = document.getElementById("distance-display");
 
 //dropdown - E.V.//
 endingLocationDropdown.addEventListener("change", calculateDistance);
+
+
 
 //dropdown - functions//
 function calculateDistance() {
@@ -87,14 +88,14 @@ tripDetailsButton.addEventListener("click", function () {
 
 linkSpotifyButton.addEventListener("click", function () {
     tripDetailsContent.classList.add("d-none");
-    linkSpotifyContent.classList.remove("d-none");
-    topGenreContent.classList.add("d-none");
+    topGenreContent.classList.remove("d-none");
+    linkSpotifyContent.classList.add("d-none");
 });
 
 topGenresButton.addEventListener("click", function () {
     tripDetailsContent.classList.add("d-none");
-    linkSpotifyContent.classList.add("d-none");
-    topGenreContent.classList.remove("d-none");
+    linkSpotifyContent.classList.remove("d-none");
+    topGenreContent.classList.add("d-none");
 });
 
 tripDetailsButton.addEventListener("click", function () {
@@ -137,21 +138,24 @@ function updateGenresButtonStyles(backgroundColor, textColor) {
     topGenresButton.style.color = textColor;
 }
 
+
+
+
 continueSpotify.addEventListener("click", function () {
     tripDetailsContent.classList.add("d-none");
     linkSpotifyContent.classList.remove("d-none");
     topGenreContent.classList.add("d-none");
-    updateProgress(50);
+    updateProgress(100);
     updateSpotifyButtonStyles("transparent", "#EC4343");
-    updateGenresButtonStyles("transparent", "#313131");
+    updateGenresButtonStyles("transparent", "#EC4343");
 });
 
 backTripDetails.addEventListener("click", function () {
-    tripDetailsContent.classList.remove("d-none");
+    tripDetailsContent.classList.add("d-none");
     linkSpotifyContent.classList.add("d-none");
-    topGenreContent.classList.add("d-none");
-    updateProgress(33.33);
-    updateSpotifyButtonStyles("transparent", "#313131");
+    topGenreContent.classList.remove("d-none");
+    updateProgress(50);
+    updateSpotifyButtonStyles("transparent", "#EC4343");
     updateGenresButtonStyles("transparent", "#313131");
 });
 
@@ -159,17 +163,17 @@ continueGenre.addEventListener("click", function () {
     tripDetailsContent.classList.add("d-none");
     linkSpotifyContent.classList.add("d-none");
     topGenreContent.classList.remove("d-none");
-    updateProgress(100);
+    updateProgress(50);
     updateSpotifyButtonStyles("transparent", "#EC4343");
-    updateGenresButtonStyles("transparent", "#EC4343");
+    updateGenresButtonStyles("transparent", "#313131");
 });
 
 backSpotify.addEventListener("click", function () {
-    tripDetailsContent.classList.add("d-none");
-    linkSpotifyContent.classList.remove("d-none");
+    tripDetailsContent.classList.remove("d-none");
+    linkSpotifyContent.classList.add("d-none");
     topGenreContent.classList.add("d-none");
-    updateProgress(50);
-    updateSpotifyButtonStyles("transparent", "#EC4343");
+    updateProgress(33.33);
+    updateSpotifyButtonStyles("transparent", "#313131");
     updateGenresButtonStyles("transparent", "#313131");
 });
 
@@ -194,17 +198,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
-
-const spotifyLoginButton = document.getElementById("connect-spotify");
-
-spotifyLoginButton.addEventListener("click", () => {
-    const clientId = "dd2bb48637cd48c08c830b0b05bd5d8a";
-    const redirectUri = "https://liammoreland.github.io/callback";
-    const scope = "user-library-read playlist-modify-public";
-
-    const authorizeUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=token&show_dialog=true`;
-
-    // Redirect the user to the Spotify login page
-    window.location.href = authorizeUrl;
 });

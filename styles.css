@@ -18,6 +18,7 @@ body p {
     padding: 0 96px 0 96px;
 }
 
+
 @media (max-width: 800px) {
     .container {
         max-width: 100%;
@@ -170,6 +171,15 @@ body p {
 }
 
 .text-button {
+    background-color: transparent;
+    border: none;
+    color: #EC4343;
+    text-decoration: none;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
     display: inline-block;
     border-bottom: 1.8px solid #EC4343;
     cursor: pointer;
@@ -191,15 +201,6 @@ body p {
     height: 24px;
 }
 
-.text-button a {
-    color: #EC4343;
-    text-decoration: none;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
 
 .text-button:hover {
     border-bottom: 1.8px solid transparent;
@@ -225,7 +226,7 @@ body p {
         padding-bottom: 2.29rem;
     }
 
-    .text-button a {
+    .text-button {
         font-size: 16px;
     }
 }
@@ -267,6 +268,20 @@ body p {
     .country-logo {
         max-width: 48px;
     }
+
+    .country-info p {
+    color:#313131;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.57143rem;
+    padding-bottom: 0px ;
+}
+
+    .country-info h3 {
+        font-size: 1rem;
+    }
+
 }
 
 .divider2 {
@@ -357,8 +372,6 @@ footer img {
     }
 }
 
-
-/* TRIP DETAILS PAGE */
 
 /*PROGRESS SECTIION */
 
@@ -495,7 +508,7 @@ select.form-select option {
     color: #313131;
 }
 
-#create-playlist {
+#continue-spotify {
     background-color: #EC4343;
 }
 
