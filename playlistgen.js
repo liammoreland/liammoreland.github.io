@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // When the user clicks the "Continue" button for Spotify, call the createPlaylist function
-    const continueSpotify = document.getElementById("continue-spotify");
-    continueSpotify.addEventListener("click", function () {
+    const finishButton = document.getElementById("finish");
+    finishButton.addEventListener("click", function () {
       // Pass the selectedGenres array to createPlaylist
       createPlaylist(selectedGenres);
     });
