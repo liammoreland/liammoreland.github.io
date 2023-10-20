@@ -12,7 +12,7 @@ const topGenreContent = document.getElementById("top-genre-content");
 const continueSpotify = document.getElementById("continue-spotify");
 const continueGenre = document.getElementById("continue-genre");
 const backTripDetails = document.getElementById("back-trip-details");
-const createPlaylist = document.getElementById("create-playlist");
+// const createPlaylist = document.getElementById("create-playlist");
 const backSpotify = document.getElementById("back-spotify");
 
 
@@ -177,26 +177,50 @@ backSpotify.addEventListener("click", function () {
     updateGenresButtonStyles("transparent", "#313131");
 });
 
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".genre-button");
-
+  
+    const selectedGenres = []; // Store the selected genres
+  
     buttons.forEach(function (button) {
-        let toggle = false;
-        const img = button.querySelector(".genre-img img");
-        const imgSrc1 = button.getAttribute("data-image1");
-        const imgSrc2 = button.getAttribute("data-image2");
-        const genreText = button.querySelector(".genre-text p");
-
-        button.addEventListener("click", function () {
-            toggle = !toggle;
-            if (toggle) {
-                img.src = imgSrc2;
-                genreText.style.color = "#EC4343"; // Change text color
-            } else {
-                img.src = imgSrc1;
-                genreText.style.color = ""; // Revert to original text color
-            }
-        });
+      let toggle = false;
+      const img = button.querySelector(".genre-img img");
+      const imgSrc1 = button.getAttribute("data-image1");
+      const imgSrc2 = button.getAttribute("data-image2");
+      const genreText = button.querySelector(".genre-text p");
+  
+      button.addEventListener("click", function () {
+        toggle = !toggle;
+        if (toggle) {
+          img.src = imgSrc2;
+          genreText.style.color = "#EC4343"; // Change text color
+  
+          // Add the selected genre to the array
+          selectedGenres.push(button.getAttribute("data-genre"));
+        } else {
+          img.src = imgSrc1;
+          genreText.style.color = ""; // Revert to original text color
+  
+          // Remove the unselected genre from the array
+          const index = selectedGenres.indexOf(button.getAttribute("data-genre"));
+          if (index !== -1) {
+            selectedGenres.splice(index, 1);
+          }
+        }
+      });
     });
-});
+  
 
+
+
+    //THIS SHOULD COME AFTER THE CREATE PLAYLIST FUNCTION IS CREATED//
+    // When the user clicks the "Continue" button for Spotify, call the createPlaylist function
+    const continueSpotify= document.getElementById("continue-spotify");
+    continueSpotify.addEventListener("click", function () {
+      // Pass the selectedGenres array to createPlaylist
+      createPlaylist(selectedGenres);
+    });
+  });
