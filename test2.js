@@ -6,6 +6,7 @@ params.forEach((param) => {
     const parts = param.split('=');
     hashParams[parts[0]] = decodeURIComponent(parts[1]);
 });
+
 console.log(hashParams.access_token);
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const imgSrc2 = button.getAttribute("data-image2");
 
         button.addEventListener("click", function () {
-            const genreText = button.querySelector(".genre-text p").innerText;
+            const genreText = button.querySelector(".genre-text").innerText; // Updated
 
             if (selectedGenres.has(genreText)) {
                 // Genre is already selected, so unselect it
@@ -48,12 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function createPlaylist(selectedGenres) {
         const playlistName = "My liam Playlist"; // You can change the playlist name
         const accessToken = hashParams.access_token; // Use the access token from hashParams
-    
+
         const headers = {
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json'
         };
-    
+
         // Create a new playlist
         fetch('https://api.spotify.com/v1/me/playlists', {
             method: 'POST',
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(playlist => {
             const playlistId = playlist.id;
-    
+
             selectedGenres.forEach(genre => {
                 // Retrieve track recommendations based on the genre
                 fetch(`https://api.spotify.com/v1/recommendations?limit=12&market=US&seed_genres=${genre}`, {
@@ -73,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(response => response.json())
                 .then(data => {
                     const trackUris = data.tracks.map(track => track.uri);
-    
+
                     // Add the recommended tracks to the playlist
                     fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
                         method: 'POST',
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(response => response.json())
                     .then(result => {
                         console.log(`Added tracks to the playlist: ${result.snapshot_id}`);
-    
+
                         // Display the created playlist details (name and link) to the user
                         displayCreatedPlaylist(playlist);
                     })
@@ -94,12 +95,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error(`Error creating the playlist: ${error}`));
     }
-    
+
     function displayCreatedPlaylist(playlist) {
         // Get the playlist name and external URL
         const playlistName = playlist.name;
         const playlistUrl = playlist.external_urls.spotify;
-    
+
         // Display the playlist information to the user
         const playlistInfo = document.getElementById("playlist-info");
         playlistInfo.innerHTML = `
