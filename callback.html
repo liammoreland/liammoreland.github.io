@@ -2,19 +2,152 @@
 <html>
 <head>
     <title>Playlist Generator</title>
+    <style>
+        
+.top-genre-section p {
+    margin: 0;
+    padding-bottom: 32px;
+}
+
+.top-genre-section button {
+    background-color: transparent;
+    border: none;
+}
+
+.genre-img {
+    background-color: #F0F3F5;
+    border-radius: 10px;
+}
+
+
+.genre-icon p {
+    display: flex;
+    justify-content: center;
+    padding-top: 12px;
+    color: var(--ACT-Black, #313131);
+    font-family: Inter;
+    font-size: 1.12371rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.genre-icon img {
+    width: 144px;
+    padding: 24px;
+}
+
+.genre-btn-container {
+ display: flex;
+ align-items: center;
+}
+
+.genre-row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 100%;
+}
+
+.genre-row {
+    display: flex;
+    justify-content: space-between;
+    min-width: 50%;
+}
+
+@media (max-width: 800px) {
+
+    
+.top-genre-section {
+    padding-bottom: 136px;
+}
+    .top-genre-section {
+        padding: 0;
+        padding-bottom: 148px;
+    }
+    .genre-row1 {
+        display: block;
+    }
+    .genre-btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+       
+    
+    .top-genre-section .container {
+        padding-top: 2.29rem;
+        padding-bottom: 2.29rem;
+    }
+
+    .genre-row {
+        padding: 0 12px 0 12 px;
+    
+    }
+}
+    </style>
 </head>
 <body>
-    <label for="pop">Pop</label>
-    <input type="checkbox" id="pop" name="genre" value="pop"><br>
+    <div class="genre-row1">
+        <div class="row genre-row">
+            <div class="col-6 genre-btn-container">
+                <button class="genre-button" data-image1="imgs/rap.png.png"
+                    data-image2="imgs/rap-red.png">
+                    <div class="genre-icon">
+                        <div class="genre-img">
+                            <img src="imgs/rap.png.png" alt="Rap Icon">
+                        </div>
+                        <div>
+                            <p class="genre-text">Hip Hop</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-6 d-flex genre-btn-container">
+                <button class="genre-button" data-image1="imgs/country.png.png"
+                    data-image2="imgs/country-red.png">
+                    <div class="genre-icon">
+                        <div class="genre-img">
+                            <img src="imgs/country.png.png" alt="Country Icon">
+                        </div>
+                        <div>
+                            <p class="genre-text">Country</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="row genre-row">
+            <div class="col-6 d-flex genre-btn-container">
+                <button class="genre-button" data-image1="imgs/pop.png.png"
+                    data-image2="imgs/pop-red.png">
+                    <div class="genre-icon">
+                        <div class="genre-img">
+                            <img src="imgs/pop.png.png" alt="Pop Icon">
+                        </div>
+                        <div>
+                            <p class="genre-text">Pop</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-6 d-flex genre-btn-container">
+                <button class="genre-button" data-image1="imgs/rock.png.png"
+                    data-image2="imgs/rock-red.png">
+                    <div class="genre-icon">
+                        <div class="genre-img">
+                            <img src="imgs/rock.png.png" alt="Rock Icon">
+                        </div>
+                        <div>
+                            <p class="genre-text">Rock</p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
 
-    <label for="rock">Rock</label>
-    <input type="checkbox" id="rock" name="genre" value="rock"><br>
 
-    <label for="hip-hop">Hip Hop</label>
-    <input type="checkbox" id="hip-hop" name="genre" value="hip-hop"><br>
-
-    <label for="country">Country</label>
-    <input type="checkbox" id="country" name="genre" value="country"><br>
 
     <button id="generate-btn" type="button">Generate Playlist</button>
 
