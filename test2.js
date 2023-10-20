@@ -6,51 +6,45 @@ params.forEach((param) => {
     const parts = param.split('=');
     hashParams[parts[0]] = decodeURIComponent(parts[1]);
 });
-
 console.log(hashParams.access_token);
+
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".genre-button");
 
-    const selectedGenres = []; // Store the selected genres
+    const selectedGenres = new Set(); // Store the selected genres in a Set
 
     buttons.forEach(function (button) {
-        let toggle = false;
         const img = button.querySelector(".genre-img img");
         const imgSrc1 = button.getAttribute("data-image1");
         const imgSrc2 = button.getAttribute("data-image2");
-        const genreText = button.querySelector(".genre-text p");
 
         button.addEventListener("click", function () {
-            toggle = !toggle;
-            if (toggle) {
-                img.src = imgSrc2;
-                genreText.style.color = "#EC4343"; // Change text color
+            const genreText = button.querySelector(".genre-text p").innerText;
 
-                // Add the selected genre to the array
-                selectedGenres.push(genreText.innerText); // Use the text inside the button as the genre
-            } else {
+            if (selectedGenres.has(genreText)) {
+                // Genre is already selected, so unselect it
+                selectedGenres.delete(genreText);
                 img.src = imgSrc1;
-                genreText.style.color = ""; // Revert to the original text color
-
-                // Remove the unselected genre from the array
-                const index = selectedGenres.indexOf(genreText.innerText);
-                if (index !== -1) {
-                    selectedGenres.splice(index, 1);
-                }
+                button.style.color = ""; // Revert to original text color
+            } else {
+                // Genre is not selected, so select it
+                selectedGenres.add(genreText);
+                img.src = imgSrc2;
+                button.style.color = "#EC4343"; // Change text color
             }
         });
     });
 
     document.getElementById("generate-btn").addEventListener("click", generatePlaylist);
-    
+
     function generatePlaylist() {
-        if (selectedGenres.length === 0) {
+        if (selectedGenres.size === 0) {
             alert("Please select at least one genre.");
         } else {
-            createPlaylist(selectedGenres);
+            createPlaylist([...selectedGenres]); // Convert the Set to an array
         }
     }
-    
+
     function createPlaylist(selectedGenres) {
         const playlistName = "My liam Playlist"; // You can change the playlist name
         const accessToken = hashParams.access_token; // Use the access token from hashParams
