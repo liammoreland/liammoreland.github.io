@@ -298,7 +298,8 @@ document.addEventListener("DOMContentLoaded", function () {
         genreOutput.textContent = selectedGenres;
 
         playlistInfo.innerHTML = `
-            <p>Check it out here <a style="font-family: Inter;
+            <p>Check it out <a 
+            style="font-family: Inter;
             font-size: 1rem;
             font-style: normal;
             font-weight: 700;
