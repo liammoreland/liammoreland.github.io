@@ -10,10 +10,37 @@ params.forEach((param) => {
 console.log(hashParams.access_token);
 document.getElementById("generate-btn").addEventListener("click", generatePlaylist);
 
+// number stored/
+const numberInput = document.getElementById('numberInput');
+const submitButton = document.getElementById('submitButton');
+const storedNumberSpan = document.getElementById('storedNumber');
+
+let storedNumber = null;
+
+submitButton.addEventListener('click', function () {
+    // Get the value from the input field and convert it to a number
+    const enteredValue = parseFloat(numberInput.value);
+
+    // Check if the entered value is a valid number
+    if (!isNaN(enteredValue)) {
+        // Store the entered number in the variable
+        storedNumber = enteredValue;
+
+        // Display the stored number on the web page
+        storedNumberSpan.textContent = storedNumber;
+    } else {
+        // If the entered value is not a valid number, show an error message
+        alert('Please enter a valid number.');
+    }
+
+    // Clear the input field
+    numberInput.value = '';
+});
+
 function generatePlaylist() {
     const selectedGenres = [];
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
+    
     checkboxes.forEach(checkbox => {
         if (checkbox.checked) {
             selectedGenres.push(checkbox.value);
@@ -22,9 +49,16 @@ function generatePlaylist() {
 
     if (selectedGenres.length === 0) {
         alert("Please select at least one genre.");
-    } else {
-        createPlaylist(selectedGenres);
+        return;
     }
+
+    if (storedNumber === null) {
+        alert("Please enter a number before generating a playlist.");
+        return;
+    }
+
+    const limit = storedNumber;
+
 }
 
 function createPlaylist(selectedGenres) {
@@ -42,36 +76,36 @@ function createPlaylist(selectedGenres) {
         headers: headers,
         body: JSON.stringify({ name: playlistName })
     })
-    .then(response => response.json())
-    .then(playlist => {
-        const playlistId = playlist.id;
+        .then(response => response.json())
+        .then(playlist => {
+            const playlistId = playlist.id;
 
-        selectedGenres.forEach(genre => {
-            // Retrieve track recommendations based on the genre
-            fetch(`https://api.spotify.com/v1/recommendations?limit=12&market=US&seed_genres=${genre}`, {
-                method: 'GET',
-                headers: headers
-            })
-            .then(response => response.json())
-            .then(data => {
-                const trackUris = data.tracks.map(track => track.uri);
+            selectedGenres.forEach(genre => {
+                // Retrieve track recommendations based on the genre
+                fetch(`https://api.spotify.com/v1/recommendations?limit={limit}&market=US&seed_genres=${genre}`, {
+                    method: 'GET',
+                    headers: headers
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const trackUris = data.tracks.map(track => track.uri);
 
-                // Add the recommended tracks to the playlist
-                fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-                    method: 'POST',
-                    headers: headers,
-                    body: JSON.stringify({ uris: trackUris })
-                })
-                .then(response => response.json())
-                .then(result => {
-                    console.log(`Added tracks to the playlist: ${result.snapshot_id}`);
-                })
-                .catch(error => console.error(`Error adding tracks to the playlist: ${error}`));
-            })
-            .catch(error => console.error(`Error fetching track recommendations: ${error}`));
-        });
-    })
-    .catch(error => console.error(`Error creating the playlist: ${error}`));
+                        // Add the recommended tracks to the playlist
+                        fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+                            method: 'POST',
+                            headers: headers,
+                            body: JSON.stringify({ uris: trackUris })
+                        })
+                            .then(response => response.json())
+                            .then(result => {
+                                console.log(`Added tracks to the playlist: ${result.snapshot_id}`);
+                            })
+                            .catch(error => console.error(`Error adding tracks to the playlist: ${error}`));
+                    })
+                    .catch(error => console.error(`Error fetching track recommendations: ${error}`));
+            });
+        })
+        .catch(error => console.error(`Error creating the playlist: ${error}`));
 }
 
 function displayCreatedPlaylist(playlist) {
