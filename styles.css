@@ -714,3 +714,30 @@ select.form-select option {
     
     }
 }
+
+
+.playlist-info {
+    padding-top: 24px;
+}
+
+.playlist-info p {
+    color:#313131;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.57143rem;
+    padding-bottom: 0px ;
+}
+
+.playlist-info a {
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+    color: #EC4343;
+    border-bottom: 1.8px solid #EC4343;
+    cursor: pointer;
+    padding-bottom: 4px;
+}

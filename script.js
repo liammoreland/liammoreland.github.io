@@ -281,11 +281,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     function displayCreatedPlaylist(playlist) {
-        // Get the playlist name and external URL
+        linkSpotifyContent.classList.add("d-none");
         const playlistName = playlist.name;
         const playlistUrl = playlist.external_urls.spotify;
 
-        // Display the playlist information to the user
         const distanceOutput = document.getElementById("distance-output-text");
         const genreOutput = document.getElementById("genre-output-text");
         const playlistInfo = document.getElementById("playlist-info");
@@ -294,8 +293,9 @@ document.addEventListener("DOMContentLoaded", function () {
         genreOutput.textContent = selectedGenres;
 
         playlistInfo.innerHTML = `
-            <p>Playlist Name: <a href="${playlistUrl}" target="_blank">${playlistName}</a></p>
+            <p>Check it out here <a href="${playlistUrl}" target="_blank">${playlistName}</a></p>
         `;
+        linkSpotifyContent.classList.remove("d-none");
         
     }
 });
