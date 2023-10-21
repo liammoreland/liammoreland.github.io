@@ -82,7 +82,7 @@ function createPlaylist(selectedGenres) {
 
             selectedGenres.forEach(genre => {
                 // Retrieve track recommendations based on the genre
-                fetch(`https://api.spotify.com/v1/recommendations?limit={limit}&market=US&seed_genres=${genre}`, {
+                fetch(`https://api.spotify.com/v1/recommendations?limit=${limit}&market=US&seed_genres=${genre}`, {
                     method: 'GET',
                     headers: headers
                 })
