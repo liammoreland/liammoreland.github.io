@@ -298,7 +298,17 @@ document.addEventListener("DOMContentLoaded", function () {
         genreOutput.textContent = selectedGenres;
 
         playlistInfo.innerHTML = `
-            <p>Check it out here <a href="${playlistUrl}" target="_blank">${playlistName}</a></p>
+            <p>Check it out here <a style="font-family: Inter;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-decoration: none;
+            color: #EC4343;
+            border-bottom: 1.8px solid #EC4343;
+            cursor: pointer;
+            padding-bottom: 4px;"
+            href="${playlistUrl}" target="_blank">${playlistName}</a></p>
         `;
         loadingPageContent.classList.add("d-none");
         linkSpotifyContent.classList.remove("d-none");
