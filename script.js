@@ -13,6 +13,7 @@ const topGenresButton = document.getElementById("top-genres-button");
 const tripDetailsContent = document.getElementById("trip-details-content");
 const linkSpotifyContent = document.getElementById("link-spotify-content");
 const topGenreContent = document.getElementById("top-genre-content");
+const loadingPageContent = document.getElementById("loading-page-content");
 
 
 //continue button - variables//
@@ -21,7 +22,6 @@ const continueGenre = document.getElementById("continue-genre");
 const backTripDetails = document.getElementById("back-trip-details");
 // const createPlaylist = document.getElementById("create-playlist");
 const backSpotify = document.getElementById("back-spotify");
-
 
 // dropdown - variables //
 const startingLocationDropdown = document.getElementById("startingLocation");
@@ -90,18 +90,21 @@ tripDetailsButton.addEventListener("click", function () {
     tripDetailsContent.classList.remove("d-none");
     linkSpotifyContent.classList.add("d-none");
     topGenreContent.classList.add("d-none");
+    loadingPageContent.classList.add("d-none");
 });
 
 linkSpotifyButton.addEventListener("click", function () {
     tripDetailsContent.classList.add("d-none");
     topGenreContent.classList.remove("d-none");
     linkSpotifyContent.classList.add("d-none");
+    loadingPageContent.classList.add("d-none");
 });
 
 topGenresButton.addEventListener("click", function () {
     tripDetailsContent.classList.add("d-none");
-    linkSpotifyContent.classList.remove("d-none");
+    linkSpotifyContent.classList.add("d-none");
     topGenreContent.classList.add("d-none");
+    loadingPageContent.classList.remove("d-none");
 });
 
 tripDetailsButton.addEventListener("click", function () {
@@ -148,6 +151,7 @@ function updateGenresButtonStyles(backgroundColor, textColor) {
 
 
 continueSpotify.addEventListener("click", function () {
+    loadingPageContent.classList.add("d-none");
     tripDetailsContent.classList.add("d-none");
     linkSpotifyContent.classList.remove("d-none");
     topGenreContent.classList.add("d-none");
@@ -157,6 +161,7 @@ continueSpotify.addEventListener("click", function () {
 });
 
 backTripDetails.addEventListener("click", function () {
+    loadingPageContent.classList.add("d-none");
     tripDetailsContent.classList.add("d-none");
     linkSpotifyContent.classList.add("d-none");
     topGenreContent.classList.remove("d-none");
@@ -167,6 +172,7 @@ backTripDetails.addEventListener("click", function () {
 });
 
 continueGenre.addEventListener("click", function () {
+    loadingPageContent.classList.add("d-none");
     tripDetailsContent.classList.add("d-none");
     linkSpotifyContent.classList.add("d-none");
     topGenreContent.classList.remove("d-none");
@@ -281,7 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     function displayCreatedPlaylist(playlist) {
-        linkSpotifyContent.classList.add("d-none");
         const playlistName = playlist.name;
         const playlistUrl = playlist.external_urls.spotify;
 
@@ -295,7 +300,10 @@ document.addEventListener("DOMContentLoaded", function () {
         playlistInfo.innerHTML = `
             <p>Check it out here <a href="${playlistUrl}" target="_blank">${playlistName}</a></p>
         `;
+        loadingPageContent.classList.add("d-none");
         linkSpotifyContent.classList.remove("d-none");
-        
     }
+
+
+    
 });
