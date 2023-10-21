@@ -1,3 +1,10 @@
+function scrollToBottom() {
+    document.documentElement.scrollTop = document.documentElement.scrollHeight;
+    document.body.scrollTop = document.body.scrollHeight;
+}
+
+
+
 //progress bar - variables//
 const progressBar = document.getElementById("progress-bar");
 const tripDetailsButton = document.getElementById("trip-details-button");
@@ -25,13 +32,12 @@ const distanceDisplay = document.getElementById("distance-display");
 endingLocationDropdown.addEventListener("change", calculateDistance);
 
 
+let distance;
 
-//dropdown - functions//
 function calculateDistance() {
     const startingLocation = startingLocationDropdown.value;
     const endingLocation = endingLocationDropdown.value;
 
-    //object to store the distances//
     const locationDistances = {
         "location2": {
             "locationC": 3,
@@ -68,7 +74,7 @@ function calculateDistance() {
         },
     };
 
-    const distance = locationDistances[startingLocation][endingLocation];
+    distance = locationDistances[startingLocation][endingLocation];
 
     distanceDisplay.textContent = `Your travel time is: ${distance} minutes`;
 }
@@ -157,6 +163,7 @@ backTripDetails.addEventListener("click", function () {
     updateProgress(50);
     updateSpotifyButtonStyles("transparent", "#EC4343");
     updateGenresButtonStyles("transparent", "#313131");
+    scrollToBottom();
 });
 
 continueGenre.addEventListener("click", function () {
@@ -166,6 +173,7 @@ continueGenre.addEventListener("click", function () {
     updateProgress(50);
     updateSpotifyButtonStyles("transparent", "#EC4343");
     updateGenresButtonStyles("transparent", "#313131");
+    scrollToBottom();
 });
 
 backSpotify.addEventListener("click", function () {
@@ -211,25 +219,31 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // if (storedNumber === null) {
-        //     alert("Please enter a number before generating a playlist.");
-        //     return;
-        // }
+        if (distance === undefined) {
+            alert("Please choose your locations");
+            tripDetailsContent.classList.remove("d-none");
+            linkSpotifyContent.classList.add("d-none");
+            topGenreContent.classList.add("d-none");
+            updateProgress(33.33);
+            updateSpotifyButtonStyles("transparent", "#313131");
+            updateGenresButtonStyles("transparent", "#313131");
+            return;
+        }
 
-        // const limit = storedNumber;
+        const limit = distance;
         createPlaylist(selectedGenres);
     }
 
     function createPlaylist(selectedGenres) {
-        const playlistName = "My Playlist"; // You can change the playlist name
-        const accessToken = hashParams.access_token; // Use the access token from hashParams
+        const playlistName = "Transport Canberra radio"; 
+        const accessToken = hashParams.access_token;
 
         const headers = {
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json'
         };
 
-        // Create a new playlist
+       // REATING A NEW PLAYLIST//
         fetch('https://api.spotify.com/v1/me/playlists', {
             method: 'POST',
             headers: headers,
@@ -240,8 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const playlistId = playlist.id;
 
                 selectedGenres.forEach(genre => {
-                    // Retrieve track recommendations based on the genre
-                    fetch(`https://api.spotify.com/v1/recommendations?limit=12&market=US&seed_genres=${genre}`, {
+                    fetch(`https://api.spotify.com/v1/recommendations?limit=${distance}&market=US&seed_genres=${genre}`, {
                         method: 'GET',
                         headers: headers
                     })
@@ -249,7 +262,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         .then(data => {
                             const trackUris = data.tracks.map(track => track.uri);
 
-                            // Add the recommended tracks to the playlist
                             fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
                                 method: 'POST',
                                 headers: headers,
