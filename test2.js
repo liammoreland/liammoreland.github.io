@@ -8,7 +8,6 @@ params.forEach((param) => {
 });
 
 console.log(hashParams.access_token);
-document.getElementById("generate-btn").addEventListener("click", generatePlaylist);
 
 // number stored/
 const numberInput = document.getElementById('numberInput');
@@ -37,6 +36,8 @@ submitButton.addEventListener('click', function () {
     numberInput.value = '';
 });
 
+document.getElementById("generate-btn").addEventListener("click", generatePlaylist);
+
 function generatePlaylist() {
     const selectedGenres = [];
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -57,12 +58,13 @@ function generatePlaylist() {
         return;
     }
 
-    const limit = storedNumber;
+    const limit = storedNumber; // Define the limit here
 
+    createPlaylist(selectedGenres, limit);
 }
 
-function createPlaylist(selectedGenres) {
-    const playlistName = "My liam Playlist"; // You can change the playlist name
+function createPlaylist(selectedGenres, limit) {
+    const playlistName = "My Playlist"; // You can change the playlist name
     const accessToken = hashParams.access_token; // Use the access token from hashParams
 
     const headers = {
@@ -98,7 +100,7 @@ function createPlaylist(selectedGenres) {
                         })
                             .then(response => response.json())
                             .then(result => {
-                                console.log(`Added tracks to the playlist: ${result.snapshot_id}`);
+                                displayCreatedPlaylist(playlist); // Display the created playlist
                             })
                             .catch(error => console.error(`Error adding tracks to the playlist: ${error}`));
                     })
