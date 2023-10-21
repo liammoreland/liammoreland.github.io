@@ -1,4 +1,4 @@
-const spotifyLoginButton = document.getElementById("auth");
+const spotifyLoginButton = document.getElementById("connect-spotify");
 spotifyLoginButton.addEventListener("click", () => {
     const clientId = "dd2bb48637cd48c08c830b0b05bd5d8a";
     const redirectUri = "https://liammoreland.github.io/callback";
@@ -8,5 +8,4 @@ spotifyLoginButton.addEventListener("click", () => {
 
     window.location.href = authorizeUrl;
 });
-
 
