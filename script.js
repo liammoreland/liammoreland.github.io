@@ -186,7 +186,7 @@ backSpotify.addEventListener("click", function () {
 });
 
 
-
+const selectedGenres = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -205,7 +205,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("continue-spotify").addEventListener("click", generatePlaylist);
 
     function generatePlaylist() {
-        const selectedGenres = [];
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
         checkboxes.forEach(checkbox => {
@@ -277,5 +276,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             })
             .catch(error => console.error(`Error creating the playlist: ${error}`));
+    }
+
+    
+    
+    function displayCreatedPlaylist(playlist) {
+        // Get the playlist name and external URL
+        const playlistName = playlist.name;
+        const playlistUrl = playlist.external_urls.spotify;
+
+        // Display the playlist information to the user
+        const distanceOutput = document.getElementById("distance-output-text");
+        const genreOutput = document.getElementById("genre-output-text");
+        const playlistInfo = document.getElementById("playlist-info");
+
+        distanceOutput.textContent = distance;
+        genreOutput.textContent = selectedGenres;
+
+        playlistInfo.innerHTML = `
+            <p>Playlist Name: <a href="${playlistUrl}" target="_blank">${playlistName}</a></p>
+        `;
+        
     }
 });
