@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             })
                                 .then(response => response.json())
                                 .then(result => {
-                                    displayCreatedPlaylist(playlist); // Display the created playlist
+                                    displayCreatedPlaylist(playlist); 
                                 })
                                 .catch(error => console.error(`Error adding tracks to the playlist: ${error}`));
                         })
@@ -306,9 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
             line-height: normal;
             text-decoration: none;
             color: #EC4343;
-            border-bottom: 1.8px solid #EC4343;
             cursor: pointer;
-            padding-bottom: 4px;"
             href="${playlistUrl}" target="_blank">${playlistName}</a></p>
         `;
         loadingPageContent.classList.add("d-none");
