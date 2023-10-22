@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
             line-height: normal;
             text-decoration: none;
             color: #EC4343;
-            cursor: pointer;
+            cursor: pointer;"
             href="${playlistUrl}" target="_blank">${playlistName}</a></p>
         `;
         loadingPageContent.classList.add("d-none");
